@@ -26,7 +26,9 @@ game.PlayerEntity = me.Entity.extend({
 
 		this.body.gravity = 0;
 
+		// Keep track of pointer position
 		me.input.registerPointerEvent('pointermove', me.game.viewport, this.pointerMove.bind(this));
+		this.pointerPos = {x: 0, y: 0};
 
 		// used to properly indicate the sprite has updated in this.update
 		this.rotatedThisFrame = false;
@@ -38,10 +40,11 @@ game.PlayerEntity = me.Entity.extend({
 	 */
 	pointerMove: function(eventType, region){
 		// rotate to face the pointer
-		this.renderable.angle = Math.atan2(
-			eventType.gameY - this.pos.y,
-			eventType.gameX - this.pos.x
-		);
+		// save the pointer position
+		this.pointerPos = {
+			x: eventType.gameX,
+			y: eventType.gameY
+		};
 		this.rotatedThisFrame = true;
 	},
 
@@ -57,7 +60,6 @@ game.PlayerEntity = me.Entity.extend({
 		}else{
 			this.body.vel.x = 0;
 		}
-
 		if(me.input.isKeyPressed('up') && !me.input.isKeyPressed('down')){
 			this.body.vel.y -= this.body.accel.y * me.timer.tick;
 		}else if(me.input.isKeyPressed('down') && !me.input.isKeyPressed('up')){
@@ -65,6 +67,12 @@ game.PlayerEntity = me.Entity.extend({
 		}else{
 			this.body.vel.y = 0;
 		}
+
+		// rotate player sprite to face pointer
+		this.renderable.angle = Math.atan2(
+			this.pointerPos.y - this.pos.y,
+			this.pointerPos.x - this.pos.x
+		);
 
 		// apply physics to the body (this moves the entity)
 		this.body.update(dt);
