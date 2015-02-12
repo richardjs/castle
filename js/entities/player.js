@@ -9,9 +9,16 @@ game.PlayerEntity = me.Entity.extend({
 	init:function (x, y, settings) {
 		// set the image
 		settings.image = 'player';
+		settings.spritewidth = 15;
+		settings.spriteheight = 30;
+		settings.width = 15;
+		settings.height = 15;
 
 		// call the constructor
 		this._super(me.Entity, 'init', [x, y , settings]);
+
+		// set player movement speed
+		this.body.setVelocity(2, 2);
 
 		// set the viewport to follow the player
 		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
@@ -42,6 +49,23 @@ game.PlayerEntity = me.Entity.extend({
 	 * update the entity
 	 */
 	update : function (dt) {
+		// respond to contols
+		if(me.input.isKeyPressed('left') && !me.input.isKeyPressed('right')){
+			this.body.vel.x -= this.body.accel.x * me.timer.tick;
+		}else if(me.input.isKeyPressed('right') && !me.input.isKeyPressed('left')){
+			this.body.vel.x += this.body.accel.x * me.timer.tick;
+		}else{
+			this.body.vel.x = 0;
+		}
+
+		if(me.input.isKeyPressed('up') && !me.input.isKeyPressed('down')){
+			this.body.vel.y -= this.body.accel.y * me.timer.tick;
+		}else if(me.input.isKeyPressed('down') && !me.input.isKeyPressed('up')){
+			this.body.vel.y += this.body.accel.y * me.timer.tick;
+		}else{
+			this.body.vel.y = 0;
+		}
+
 		// apply physics to the body (this moves the entity)
 		this.body.update(dt);
 
