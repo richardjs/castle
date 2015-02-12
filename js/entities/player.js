@@ -17,21 +17,46 @@ game.PlayerEntity = me.Entity.extend({
 		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
 
 		this.body.gravity = 0;
+
+		me.input.registerPointerEvent('pointermove', me.game.viewport, this.pointerMove.bind(this));
+
+		// used to properly indicate the sprite has updated in this.update
+		this.rotatedThisFrame = false;
+	},
+
+
+	/**
+	 * called when the mouse moves
+	 */
+	pointerMove: function(eventType, region){
+		// rotate to face the pointer
+		this.renderable.angle = Math.atan2(
+			eventType.gameY - this.pos.y,
+			eventType.gameX - this.pos.x
+		);
+		this.rotatedThisFrame = true;
 	},
 
 	/**
 	 * update the entity
 	 */
 	update : function (dt) {
-
 		// apply physics to the body (this moves the entity)
 		this.body.update(dt);
 
 		// handle collisions against other shapes
 		me.collision.check(this);
 
+		var rotatedThisFrame = this.rotatedThisFrame;
+		this.rotatedThisFrame = false;
+
 		// return true if we moved or if the renderable was updated
-		return (this._super(me.Entity, 'update', [dt]) || this.body.vel.x !== 0 || this.body.vel.y !== 0);
+		return (
+			rotatedThisFrame
+			|| this._super(me.Entity, 'update', [dt])
+			|| this.body.vel.x !== 0
+			|| this.body.vel.y !== 0
+		);
 	},
 
    /**
