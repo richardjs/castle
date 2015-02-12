@@ -15,6 +15,7 @@ game.PlayerEntity = me.Entity.extend({
 
 		// set the viewport to follow the player
 		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
+		me.game.viewport.setDeadzone(0, 0);
 
 		this.body.gravity = 0;
 
