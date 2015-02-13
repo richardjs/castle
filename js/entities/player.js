@@ -18,7 +18,7 @@ game.PlayerEntity = me.Entity.extend({
 		this._super(me.Entity, 'init', [x, y , settings]);
 
 		// set player movement speed
-		this.body.setVelocity(2, 2);
+		this.body.setVelocity(1.5, 1.5);
 
 		// set the viewport to follow the player
 		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
@@ -69,6 +69,7 @@ game.PlayerEntity = me.Entity.extend({
 		}
 
 		// rotate player sprite to face pointer
+		// TODO: we only need to do this on sprite update
 		this.renderable.angle = Math.atan2(
 			this.pointerPos.y - this.pos.y,
 			this.pointerPos.x - this.pos.x
