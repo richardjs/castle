@@ -4,15 +4,13 @@ var game = {
 
 	// an object where to store game information
 	data : {
-		// score
-		score : 0
 	},
 
 
 	// Run on page load.
 	"onload" : function () {
 		// Initialize the video.
-		if (!me.video.init("screen",  me.video.CANVAS, 960, 640, true, 'auto')) {
+		if (!me.video.init("screen",  me.video.CANVAS, 1000, 600, true, 1)) {
 			alert("Your browser does not support HTML5 canvas.");
 			return;
 		}
@@ -50,6 +48,11 @@ var game = {
 		me.input.bindKey(me.input.KEY.A, 'left');
 		me.input.bindKey(me.input.KEY.S, 'down');
 		me.input.bindKey(me.input.KEY.D, 'right');
+
+		me.input.bindKey(me.input.KEY.Q, 'use_left');
+		me.input.bindPointer(me.input.mouse.LEFT, me.input.KEY.Q)
+		me.input.bindKey(me.input.KEY.E, 'use_right');
+		me.input.bindPointer(me.input.mouse.RIGHT, me.input.KEY.E)
 
 		// Start the game.
 		me.state.change(me.state.PLAY);
