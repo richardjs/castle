@@ -44,9 +44,11 @@ game.PlayerEntity = me.Entity.extend({
 		this.renderable.addAnimation('walk_left', [6, 7, 6, 8], 150);
 		this.facing = undefined;
 
-		// STUB: give player a slingshot
+		// STUB: give player a slingshot and teleporter
 		this.slingshot = new Slingshot(this);
 		this.slingshot.equip(0);
+		this.teleporter = new Teleporter(this);
+		this.teleporter.equip(2);
 	},
 
 
@@ -69,6 +71,7 @@ game.PlayerEntity = me.Entity.extend({
 	update : function (dt) {
 		// STUB
 		this.slingshot.update(dt);
+		this.teleporter.update(dt);
 
 		// rotate the sprite to face pointer
 		// TODO: we only need to do this on sprite update
