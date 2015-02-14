@@ -13,6 +13,7 @@ game.PlayerEntity = me.Entity.extend({
 		settings.height = 12;
 		settings.spritewidth = 32
 		settings.spriteheight = 32;
+		settings.collisionType = 'PLAYER_OBJECT';
 
 		// call the constructor
 		this._super(me.Entity, 'init', [x, y , settings]);
@@ -42,6 +43,10 @@ game.PlayerEntity = me.Entity.extend({
 		this.renderable.addAnimation('stand_left', [6]);
 		this.renderable.addAnimation('walk_left', [6, 7, 6, 8], 150);
 		this.facing = undefined;
+
+		// STUB: give player a slingshot
+		this.slingshot = new Slingshot(this);
+		this.slingshot.equip(0);
 	},
 
 
@@ -62,6 +67,9 @@ game.PlayerEntity = me.Entity.extend({
 	 * update the entity
 	 */
 	update : function (dt) {
+		// STUB
+		this.slingshot.update(dt);
+
 		// rotate the sprite to face pointer
 		// TODO: we only need to do this on sprite update
 		var angle = Math.atan2(

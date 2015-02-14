@@ -4,6 +4,7 @@ var game = {
 
 	// an object where to store game information
 	data : {
+		possessions: []
 	},
 
 
