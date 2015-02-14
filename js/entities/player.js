@@ -8,11 +8,9 @@ game.PlayerEntity = me.Entity.extend({
 	 */
 	init: function (x, y, settings) {
 		// set the image
-		settings.image = 'player';
-		settings.spritewidth = 15;
-		settings.spriteheight = 30;
-		settings.width = 15;
-		settings.height = 15;
+		settings.image = 'character';
+		settings.spritewidth = 32
+		settings.spriteheight = 32;
 
 		// call the constructor
 		this._super(me.Entity, 'init', [x, y , settings]);
@@ -30,6 +28,15 @@ game.PlayerEntity = me.Entity.extend({
 
 		// used to properly indicate the sprite has updated in this.update
 		this.rotatedThisFrame = false;
+
+		// set up animation
+		this.renderable.addAnimation('stand_down', [0]);
+		this.renderable.addAnimation('walk_down', [0, 1, 0, 2], 150);
+		this.renderable.addAnimation('stand_up', [3]);
+		this.renderable.addAnimation('walk_up', [3, 4, 3, 5], 150);
+		this.renderable.addAnimation('stand_left', [6]);
+		this.renderable.addAnimation('walk_left', [6, 7, 6, 8], 150);
+		this.facing = undefined;
 	},
 
 
@@ -50,6 +57,24 @@ game.PlayerEntity = me.Entity.extend({
 	 * update the entity
 	 */
 	update : function (dt) {
+		// rotate the sprite to face pointer
+		// TODO: we only need to do this on sprite update
+		var angle = Math.atan2(
+			this.pointerPos.y - this.pos.y,
+			this.pointerPos.x - this.pos.x
+		);
+		if(angle > -Math.PI*.75 && angle <= -Math.PI*.25){
+			this.facing = 'up';
+		}else if(angle > -Math.PI*.25 && angle <= Math.PI*.25){
+			this.facing = 'left';
+			this.renderable.flipX(true);
+		}else if(angle > Math.PI*.25 && angle <= Math.PI*.75){
+			this.facing = 'down';
+		}else{
+			this.facing = 'left';
+			this.renderable.flipX(false);
+		}
+
 		// respond to contols
 		if(me.input.isKeyPressed('left') && !me.input.isKeyPressed('right')){
 			this.body.vel.x -= this.body.accel.x * me.timer.tick;
@@ -66,16 +91,19 @@ game.PlayerEntity = me.Entity.extend({
 			this.body.vel.y = 0;
 		}
 
+		if(this.body.vel.x == 0 && this.body.vel.y == 0){
+			this.renderable.setCurrentAnimation('stand_' + this.facing);
+		}else{
+			if(!this.renderable.isCurrentAnimation('walk_' + this.facing)){
+				this.renderable.setCurrentAnimation('walk_' + this.facing);
+			}
+		}
+
+		/*
 		document.body.getElementsByTagName('canvas')[0].addEventListener('mouseup', function(){
 			me.game.world.addChild(me.pool.pull('slingshotstone', this.pos.x, this.pos.y, 0, 0));
 		}.bind(this));
-
-		// rotate player sprite to face pointer
-		// TODO: we only need to do this on sprite update
-		this.renderable.angle = Math.atan2(
-			this.pointerPos.y - this.pos.y,
-			this.pointerPos.x - this.pos.x
-		);
+		*/
 
 		// apply physics to the body (this moves the entity)
 		this.body.update(dt);
