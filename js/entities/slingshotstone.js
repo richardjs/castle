@@ -4,6 +4,7 @@ game.SlingshotStoneEntity = me.Entity.extend({
 		settings.image = 'slingshotstone';
 		settings.height = 5;
 		settings.width = 5;
+		settings.collisionType = 'PROJECTILE_OBJECT';
 
 		this._super(me.Entity, 'init', [x, y, settings]);
 		this.body.addShape(new me.Rect(0, 0, settings.width, settings.height));
@@ -16,6 +17,8 @@ game.SlingshotStoneEntity = me.Entity.extend({
 		this.body.accel.y = Math.sin(angle) * speed
 
 		this.ttl = 250 + 1000*(Math.min(charge, 750)/750);
+		
+		this.damage = 10 * Math.min(charge, 750)/750;
 	},
 
 	update: function(dt){

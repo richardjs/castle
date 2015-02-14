@@ -18,6 +18,9 @@ game.PlayerEntity = me.Entity.extend({
 		// call the constructor
 		this._super(me.Entity, 'init', [x, y , settings]);
 
+		// store a reference to the player on me.game
+		me.game.player = this;
+
 		// reposition hitbox to bottom of player
 		this.anchorPoint.set(.5, 1);
 
@@ -145,7 +148,11 @@ game.PlayerEntity = me.Entity.extend({
 	 */
 	onCollision : function (response, other) {
 		// Make all other objects solid
-		if(other.className === 'slingshotstone'){
+		if(other.body.collisitionType === me.collision.types.PROJECTILE_OBJECT){
+			return false;
+		}
+		if(other.body.collisionType === me.collision.types.ENEMY_OBJECT){
+			this.renderable.flicker(500);
 			return false;
 		}
 		return true;
