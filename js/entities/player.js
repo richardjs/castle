@@ -9,11 +9,16 @@ game.PlayerEntity = me.Entity.extend({
 	init: function (x, y, settings) {
 		// set the image
 		settings.image = 'character';
+		settings.width = 15;
+		settings.height = 12;
 		settings.spritewidth = 32
 		settings.spriteheight = 32;
 
 		// call the constructor
 		this._super(me.Entity, 'init', [x, y , settings]);
+
+		// reposition hitbox to bottom of player
+		this.anchorPoint.set(.5, 1);
 
 		// set player movement speed
 		this.body.setVelocity(1.5, 1.5);
