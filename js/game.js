@@ -42,6 +42,7 @@ var game = {
 
 		// add our player entity in the entity pool
 		me.pool.register("player", game.PlayerEntity);
+		me.pool.register("slingshotstone", game.SlingshotStoneEntity, true);
 
 		// set up controls
 		me.input.bindKey(me.input.KEY.W, 'up');
@@ -54,7 +55,10 @@ var game = {
 		me.input.bindKey(me.input.KEY.E, 'use_right');
 		me.input.bindPointer(me.input.mouse.RIGHT, me.input.KEY.E)
 
-		// Start the game.
+		// disable physics gravity
+		me.sys.gravity = 0;
+
+		// start the game
 		me.state.change(me.state.PLAY);
 	}
 };

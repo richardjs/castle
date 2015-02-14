@@ -6,7 +6,7 @@ game.PlayerEntity = me.Entity.extend({
 	/**
 	 * constructor
 	 */
-	init:function (x, y, settings) {
+	init: function (x, y, settings) {
 		// set the image
 		settings.image = 'player';
 		settings.spritewidth = 15;
@@ -23,8 +23,6 @@ game.PlayerEntity = me.Entity.extend({
 		// set the viewport to follow the player
 		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
 		me.game.viewport.setDeadzone(0, 0);
-
-		this.body.gravity = 0;
 
 		// Keep track of pointer position
 		me.input.registerPointerEvent('pointermove', me.game.viewport, this.pointerMove.bind(this));
@@ -68,6 +66,10 @@ game.PlayerEntity = me.Entity.extend({
 			this.body.vel.y = 0;
 		}
 
+		document.body.getElementsByTagName('canvas')[0].addEventListener('mouseup', function(){
+			me.game.world.addChild(me.pool.pull('slingshotstone', this.pos.x, this.pos.y, 0, 0));
+		}.bind(this));
+
 		// rotate player sprite to face pointer
 		// TODO: we only need to do this on sprite update
 		this.renderable.angle = Math.atan2(
@@ -99,6 +101,9 @@ game.PlayerEntity = me.Entity.extend({
 	 */
 	onCollision : function (response, other) {
 		// Make all other objects solid
+		if(other.className === 'slingshotstone'){
+			return false;
+		}
 		return true;
 	}
 });

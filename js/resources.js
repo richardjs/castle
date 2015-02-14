@@ -4,6 +4,7 @@ game.resources = [
 	 * {name: "example", type: "image", src: "data/img/example.png"},
 	 */
 	{type: 'image', name: 'player', src: 'data/img/player.png'},
+	{type: 'image', name: 'slingshotstone', src: 'data/img/slingshotstone.png'},
 	{type: 'image', name: 'tiles', src: 'data/img/map/tiles.png'},
 
 	/* Texture Atlases
