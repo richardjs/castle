@@ -6,17 +6,6 @@ var Slingshot = Item.extend({
 		this.timer = 0;
 	},
 
-	'equip': function(button){
-		this._super(Item, 'equip', [button]);
-		me.video.renderer.getScreenCanvas().addEventListener('mousedown', this.onMouseDown.bind(this));
-		me.video.renderer.getScreenCanvas().addEventListener('mouseup', this.onMouseUp.bind(this));
-	},
-
-	'unequip': function(){
-		document.removeEventListener(this.onMouseDown);
-		document.removeEventListener(this.onMouseUp);
-	},
-
 	'update': function(dt){
 		if(this.timer > 0){
 			this.timer -= dt;
@@ -27,11 +16,11 @@ var Slingshot = Item.extend({
 		}
 	},
 
-	'onMouseDown': function(event){
+	'hold': function(event){
 		this.charging = true;
 	},
 
-	'onMouseUp': function(event){
+	'release': function(event){
 		if(this.charge > 0){
 			me.game.world.addChild(me.pool.pull(
 				'slingshotstone',

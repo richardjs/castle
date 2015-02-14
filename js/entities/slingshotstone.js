@@ -11,17 +11,18 @@ game.SlingshotStoneEntity = me.Entity.extend({
 		this.body.setCollisionMask(me.collision.types.WORLD_SHAPE | me.collision.types.ENEMY_OBJECT);
 
 		var angle = Math.atan2(targetY - y, targetX - x);
-		var speed = 500 * (Math.min(charge, 1500)/1500);
+		var speed = 500 * (Math.min(charge, 750)/750);
 		this.body.accel.x = Math.cos(angle) * speed,
 		this.body.accel.y = Math.sin(angle) * speed
 
-		this.ttl = 250 + 1000*(Math.min(charge, 1500)/1500);
+		this.ttl = 250 + 1000*(Math.min(charge, 750)/750);
 	},
 
 	update: function(dt){
 		this.ttl -= dt;
 		if(this.ttl <= 0){
 			me.game.world.removeChild(this);
+			return true;
 		}
 
 		this.body.vel.x = this.body.accel.x*dt / 1000;
