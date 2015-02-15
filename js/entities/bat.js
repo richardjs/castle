@@ -1,4 +1,4 @@
-var BAT_MOVE_DISTANCE = 300;
+var BAT_MOVE_DISTANCE = 500;
 var BAT_MOVE_SPEED = 75;
 var BAT_TURN_SPEED = Math.PI/4;
 
@@ -50,7 +50,8 @@ game.BatEntity = me.Entity.extend({
 	},
 	
 	'onCollision': function(response, other){
-		if(other.type == 'groundOnly'){
+		if(other.type === 'groundOnly' ||
+			other.body.collisionType === me.collision.types.ENEMY_OBJECT){
 			return false;
 		}
 

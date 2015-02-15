@@ -39,7 +39,7 @@ game.SlingshotStoneEntity = me.Entity.extend({
 	},
 
 	onCollision: function(response, other){
-		if(other.type == 'groundOnly'){
+		if(other.type === 'groundOnly'){
 			return false;
 		}
 		me.game.world.removeChild(this);
