@@ -50,6 +50,10 @@ game.BatEntity = me.Entity.extend({
 	},
 	
 	'onCollision': function(response, other){
+		if(other.type == 'groundOnly'){
+			return false;
+		}
+
 		if(other.damage){
 			this.health -= other.damage;
 			if(this.health <= 0){
