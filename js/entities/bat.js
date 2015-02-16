@@ -46,7 +46,6 @@ game.BatEntity = me.Entity.extend({
 	'newDirection': function(){
 		this.angle = Math.PI*2 * Math.random();
 		this.turndir = Math.floor(Math.random()*3 - 1)
-		console.log('new direction');
 	},
 	
 	'onCollision': function(response, other){

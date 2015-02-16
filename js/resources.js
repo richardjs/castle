@@ -5,6 +5,7 @@ game.resources = [
 	 */
 	{type: 'image', name: 'bat', src: 'data/img/bat.png'},
 	{type: 'image', name: 'character', src: 'data/img/character.png'},
+	{type: 'image', name: 'guard', src: 'data/img/guard.png'},
 	{type: 'image', name: 'slingshotstone', src: 'data/img/slingshotstone.png'},
 	{type: 'image', name: 'tiles', src: 'data/img/map/tiles.png'},
 
