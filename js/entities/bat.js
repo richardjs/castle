@@ -1,6 +1,6 @@
 var BAT_MOVE_DISTANCE = 500;
-var BAT_MOVE_SPEED = 75;
-var BAT_TURN_SPEED = Math.PI/4;
+var BAT_MOVE_SPEED = 4.5;
+var BAT_TURN_SPEED = Math.PI;
 
 game.BatEntity = me.Entity.extend({
 	'init': function(x, y, settings){
@@ -33,8 +33,8 @@ game.BatEntity = me.Entity.extend({
 		if(this.state === 'move'){
 			this.angle += (BAT_TURN_SPEED * this.turndir)*dt/1000;
 
-			this.body.vel.x = (Math.cos(this.angle) * BAT_MOVE_SPEED)*dt/1000,
-			this.body.vel.y = (Math.sin(this.angle) * BAT_MOVE_SPEED)*dt/1000
+			this.body.vel.x = (Math.cos(this.angle) * BAT_MOVE_SPEED);
+			this.body.vel.y = (Math.sin(this.angle) * BAT_MOVE_SPEED);
 		}
 
 		this.body.update(dt);
