@@ -28,7 +28,7 @@ game.GuardEntity = me.Entity.extend({
 			this.axis = 'vertical';
 			this.body.setVelocity(0, .5);
 			this.start = y;
-			this.end = y + height - 16;
+			this.end = y + height - 10;
 		}else{
 			this.pos.x += 8;
 			this.pos.y += 2;
@@ -41,21 +41,33 @@ game.GuardEntity = me.Entity.extend({
 			this.direction = 1;
 		}
 
-		this.armor = 10;
+		this.armor = 9;
 		this.health = 20;
+		this.state = 'patrol';
 	},
 
 	'update': function(dt){
-		if(this.axis === 'horizontal'){
-			if((this.direction > 0 && this.pos.x >= this.end) || (this.direction < 0 && this.pos.x <= this.start)){
-				this.direction *= -1;
+		if(this.state === 'patrol'){
+			if(this.distanceTo(me.game.player) < 100){
+				this.body.setVelocity(1.25, 1.25);
+				this.state = 'chase';
 			}
-			this.body.vel.x += this.body.accel.x * this.direction * me.timer.tick;
-		}else if(this.axis === 'vertical'){
-			if((this.direction > 0 && this.pos.y >= this.end) || (this.direction < 0 && this.pos.y <= this.start)){
-				this.direction *= -1;
+
+			if(this.axis === 'horizontal'){
+				if((this.direction > 0 && this.pos.x >= this.end) || (this.direction < 0 && this.pos.x <= this.start)){
+					this.direction *= -1;
+				}
+				this.body.vel.x += this.body.accel.x * this.direction * me.timer.tick;
+			}else if(this.axis === 'vertical'){
+				if((this.direction > 0 && this.pos.y >= this.end) || (this.direction < 0 && this.pos.y <= this.start)){
+					this.direction *= -1;
+				}
+				this.body.vel.y += this.body.accel.y * this.direction * me.timer.tick;
 			}
-			this.body.vel.y += this.body.accel.y * this.direction * me.timer.tick;
+		}else if(this.state === 'chase'){
+			var angle = this.angleTo(me.game.player);
+			this.body.vel.x = (Math.cos(angle) * 1);
+			this.body.vel.y = (Math.sin(angle) * 1);
 		}
 		this.body.update(dt);
 		me.collision.check(this);
@@ -64,6 +76,18 @@ game.GuardEntity = me.Entity.extend({
 	},
 
 	'onCollision': function(response, other){
+		if(other.body.collisionType === me.collision.types.PROJECTILE_OBJECT){
+			this.body.setVelocity(1.25, 1.25);
+			this.state = 'chase';
+
+			this.health -= Math.max(other.damage - this.armor, 0);
+			if(this.health <= 0){
+				me.game.world.removeChild(this);
+			}
+
+			return false;
+		}
+
 		return other.body.collisionType === me.collision.types.WORLD_SHAPE;
 	}
 });
