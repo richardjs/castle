@@ -40,24 +40,24 @@ game.PlayerEntity = me.Entity.extend({
 
 		// set up animation
 		this.renderable.addAnimation('stand_down', [0]);
-		this.renderable.addAnimation('walk_down', [0, 1, 0, 2], 150);
-		this.renderable.addAnimation('stand_up', [7]);
-		this.renderable.addAnimation('walk_up', [7, 8, 7, 9], 150);
-		this.renderable.addAnimation('stand_left', [14]);
-		this.renderable.addAnimation('walk_left', [14, 15, 14, 16], 150);
+		this.renderable.addAnimation('walk_down', [1, 2], 150);
+		this.renderable.addAnimation('stand_up', [16]);
+		this.renderable.addAnimation('walk_up', [17, 18], 150);
+		this.renderable.addAnimation('stand_left', [32]);
+		this.renderable.addAnimation('walk_left', [33, 34], 150);
 
 		this.renderable.addAnimation('slingshot_low_down', [3]);
 		this.renderable.addAnimation('slingshot_med_down', [4]);
 		this.renderable.addAnimation('slingshot_high_down', [5]);
 		this.renderable.addAnimation('slingshot_fire_down', [6]);
-		this.renderable.addAnimation('slingshot_low_up', [10]);
-		this.renderable.addAnimation('slingshot_med_up', [11]);
-		this.renderable.addAnimation('slingshot_high_up', [12]);
-		this.renderable.addAnimation('slingshot_fire_up', [13]);
-		this.renderable.addAnimation('slingshot_low_left', [17]);
-		this.renderable.addAnimation('slingshot_med_left', [18]);
-		this.renderable.addAnimation('slingshot_high_left', [19]);
-		this.renderable.addAnimation('slingshot_fire_left', [20]);
+		this.renderable.addAnimation('slingshot_low_up', [19]);
+		this.renderable.addAnimation('slingshot_med_up', [20]);
+		this.renderable.addAnimation('slingshot_high_up', [21]);
+		this.renderable.addAnimation('slingshot_fire_up', [22]);
+		this.renderable.addAnimation('slingshot_low_left', [35]);
+		this.renderable.addAnimation('slingshot_med_left', [36]);
+		this.renderable.addAnimation('slingshot_high_left', [37]);
+		this.renderable.addAnimation('slingshot_fire_left', [38]);
 		this.facing = undefined;
 		this.itemAnimation = false;
 
