@@ -1,4 +1,7 @@
+'use strict';
+
 var SLINGSHOT_CHARGE_TIME = 750;
+var SLINGSHOT_COOLDOWN = 500;
 
 var Slingshot = Item.extend({
 	'init': function(player){
@@ -46,7 +49,7 @@ var Slingshot = Item.extend({
 				this.charge
 			));
 			this.charge = 0;
-			this.timer = 500;
+			this.timer = SLINGSHOT_COOLDOWN;
 		}
 		this.charging = false;
 	}

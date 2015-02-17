@@ -65,7 +65,8 @@ game.PlayerEntity = me.Entity.extend({
 		this.slingshot = new Slingshot(this);
 		this.slingshot.equip(0);
 		this.teleporter = new Teleporter(this);
-		this.teleporter.equip(2);
+		this.sword = new Sword(this);
+		this.sword.equip(2);
 	},
 
 
@@ -89,6 +90,7 @@ game.PlayerEntity = me.Entity.extend({
 		// STUB
 		this.slingshot.update(dt);
 		this.teleporter.update(dt);
+		this.sword.update(dt);
 
 		// rotate the sprite to face pointer
 		// TODO: we only need to do this on sprite update
@@ -107,6 +109,7 @@ game.PlayerEntity = me.Entity.extend({
 			this.facing = 'left';
 			this.renderable.flipX(false);
 		}
+		this.angle = angle;
 
 		// respond to contols
 		if(me.input.isKeyPressed('left') && !me.input.isKeyPressed('right')){
@@ -133,12 +136,6 @@ game.PlayerEntity = me.Entity.extend({
 				}
 			}
 		}
-
-		/*
-		document.body.getElementsByTagName('canvas')[0].addEventListener('mouseup', function(){
-			me.game.world.addChild(me.pool.pull('slingshotstone', this.pos.x, this.pos.y, 0, 0));
-		}.bind(this));
-		*/
 
 		// apply physics to the body (this moves the entity)
 		this.body.update(dt);

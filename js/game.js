@@ -46,6 +46,7 @@ var game = {
 		me.pool.register("guard", game.GuardEntity);
 		me.pool.register("player", game.PlayerEntity);
 		me.pool.register("slingshotstone", game.SlingshotStoneEntity, true);
+		me.pool.register("swordswing", game.SwordSwing, true);
 
 		// set up controls
 		me.input.bindKey(me.input.KEY.W, 'up');
