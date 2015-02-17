@@ -41,11 +41,25 @@ game.PlayerEntity = me.Entity.extend({
 		// set up animation
 		this.renderable.addAnimation('stand_down', [0]);
 		this.renderable.addAnimation('walk_down', [0, 1, 0, 2], 150);
-		this.renderable.addAnimation('stand_up', [3]);
-		this.renderable.addAnimation('walk_up', [3, 4, 3, 5], 150);
-		this.renderable.addAnimation('stand_left', [6]);
-		this.renderable.addAnimation('walk_left', [6, 7, 6, 8], 150);
+		this.renderable.addAnimation('stand_up', [7]);
+		this.renderable.addAnimation('walk_up', [7, 8, 7, 9], 150);
+		this.renderable.addAnimation('stand_left', [14]);
+		this.renderable.addAnimation('walk_left', [14, 15, 14, 16], 150);
+
+		this.renderable.addAnimation('slingshot_low_down', [3]);
+		this.renderable.addAnimation('slingshot_med_down', [4]);
+		this.renderable.addAnimation('slingshot_high_down', [5]);
+		this.renderable.addAnimation('slingshot_fire_down', [6]);
+		this.renderable.addAnimation('slingshot_low_up', [10]);
+		this.renderable.addAnimation('slingshot_med_up', [11]);
+		this.renderable.addAnimation('slingshot_high_up', [12]);
+		this.renderable.addAnimation('slingshot_fire_up', [13]);
+		this.renderable.addAnimation('slingshot_low_left', [17]);
+		this.renderable.addAnimation('slingshot_med_left', [18]);
+		this.renderable.addAnimation('slingshot_high_left', [19]);
+		this.renderable.addAnimation('slingshot_fire_left', [20]);
 		this.facing = undefined;
+		this.itemAnimation = false;
 
 		// STUB: give player a slingshot and teleporter
 		this.slingshot = new Slingshot(this);
@@ -110,11 +124,13 @@ game.PlayerEntity = me.Entity.extend({
 			this.body.vel.y = 0;
 		}
 
-		if(this.body.vel.x == 0 && this.body.vel.y == 0){
-			this.renderable.setCurrentAnimation('stand_' + this.facing);
-		}else{
-			if(!this.renderable.isCurrentAnimation('walk_' + this.facing)){
-				this.renderable.setCurrentAnimation('walk_' + this.facing);
+		if(!this.itemAnimation){
+			if(this.body.vel.x == 0 && this.body.vel.y == 0){
+				this.renderable.setCurrentAnimation('stand_' + this.facing);
+			}else{
+				if(!this.renderable.isCurrentAnimation('walk_' + this.facing)){
+					this.renderable.setCurrentAnimation('walk_' + this.facing);
+				}
 			}
 		}
 
@@ -139,6 +155,7 @@ game.PlayerEntity = me.Entity.extend({
 			|| this._super(me.Entity, 'update', [dt])
 			|| this.body.vel.x !== 0
 			|| this.body.vel.y !== 0
+			|| this.itemAnimation
 		);
 	},
 
