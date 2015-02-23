@@ -35,6 +35,9 @@ game.PlayerEntity = me.Entity.extend({
 		me.input.registerPointerEvent('pointermove', me.game.viewport, this.pointerMove.bind(this));
 		this.pointerPos = {x: 0, y: 0};
 
+		// Listen for keydown events for item switching
+		document.body.addEventListener('keydown', this.keyDown.bind(this));
+
 		// used to properly indicate the sprite has updated in this.update
 		this.rotatedThisFrame = false;
 
@@ -93,6 +96,45 @@ game.PlayerEntity = me.Entity.extend({
 			y: eventType.gameY
 		};
 		this.rotatedThisFrame = true;
+	},
+
+	keyDown: function(event){
+		switch(event.keyCode){
+			case 81: // q
+				var equipped;
+				var i;
+				for(i = 0; i < game.data.items.length; i++){
+					if(game.data.items[i].button === 0){
+						equipped = i;
+						break;
+					}
+				}
+				for(var j = i; j < i + game.data.items.length; j++){
+					var item = game.data.items[j % game.data.items.length];
+					if(!item.equipped){
+						game.data.items[equipped].unequip();
+						item.equip(0);
+					}
+				}
+				break;
+			case 69: // e
+				var equipped;
+				var i;
+				for(i = 0; i < game.data.items.length; i++){
+					if(game.data.items[i].button === 2){
+						equipped = i;
+						break;
+					}
+				}
+				for(var j = i; j < i + game.data.items.length; j++){
+					var item = game.data.items[j % game.data.items.length];
+					if(!item.equipped){
+						game.data.items[equipped].unequip();
+						item.equip(2);
+					}
+				}
+				break;
+		}
 	},
 
 	/**
