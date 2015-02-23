@@ -42,8 +42,8 @@ var game = {
 		me.state.set(me.state.PLAY, new game.PlayScreen());
 
 		// add our player entity in the entity pool
-		//me.pool.register("bat", game.BatEntity);
-		//me.pool.register("guard", game.GuardEntity);
+		me.pool.register("bat", game.BatEntity);
+		me.pool.register("guard", game.GuardEntity);
 		me.pool.register("player", game.PlayerEntity);
 		me.pool.register("slingshotstone", game.SlingshotStoneEntity, true);
 		me.pool.register("swordswing", game.SwordSwing, true);
