@@ -75,7 +75,7 @@ game.PlayerEntity = me.Entity.extend({
 		this.slingshot.equip(0);
 		this.teleporter = new Teleporter(this);
 		this.sword = new Sword(this);
-		this.sword.equip(2);
+		this.teleporter.equip(2);
 		game.data.items.push(this.slingshot);
 		game.data.items.push(this.sword);
 		game.data.items.push(this.teleporter);

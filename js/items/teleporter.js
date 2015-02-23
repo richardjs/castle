@@ -1,5 +1,5 @@
 var TELEPORT_COOLDOWN = 3000;
-var TELEPORT_WARMUP = 1000;
+var TELEPORT_WARMUP = 1200;
 
 var Teleporter = Item.extend({
 	'init': function(player){
@@ -19,12 +19,14 @@ var Teleporter = Item.extend({
 
 		if(this.teleporting){
 			this.warmup -= dt;
+
 			if(this.warmup <= 0){
 				this.player.pos.x = this.targetX;
 				this.player.pos.y = this.targetY;
 				this.teleporting = false;
 				this.cooldown = TELEPORT_COOLDOWN;
 				this.player.renderable.flicker(TELEPORT_WARMUP/2);
+				this.player.itemAnimation = false;
 			}
 		}
 	},
@@ -38,5 +40,9 @@ var Teleporter = Item.extend({
 		this.targetX = this.player.pointerPos.x;
 		this.targetY = this.player.pointerPos.y;
 		this.player.renderable.flicker(TELEPORT_WARMUP);
+
+		this.player.itemAnimation = true;
+		this.player.renderable.setCurrentAnimation('cast_' + this.player.facing);
+		this.player.renderable.setAnimationFrame(0);
 	}
 });
