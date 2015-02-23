@@ -4,7 +4,7 @@ var game = {
 
 	// an object where to store game information
 	data : {
-		possessions: []
+		items: []
 	},
 
 
@@ -54,9 +54,9 @@ var game = {
 		me.input.bindKey(me.input.KEY.S, 'down');
 		me.input.bindKey(me.input.KEY.D, 'right');
 
-		me.input.bindKey(me.input.KEY.Q, 'use_left');
+		me.input.bindKey(me.input.KEY.Q, 'next_item_left');
 		me.input.bindPointer(me.input.mouse.LEFT, me.input.KEY.Q)
-		me.input.bindKey(me.input.KEY.E, 'use_right');
+		me.input.bindKey(me.input.KEY.E, 'next_item_right');
 		me.input.bindPointer(me.input.mouse.RIGHT, me.input.KEY.E)
 
 		// disable physics gravity

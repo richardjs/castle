@@ -5,6 +5,7 @@ var SLINGSHOT_COOLDOWN = 500;
 
 var Slingshot = Item.extend({
 	'init': function(player){
+		this.name = 'Slingshot';
 		this._super(Item, 'init', [player]);
 		this.charge = 0;
 		this.charging = false;

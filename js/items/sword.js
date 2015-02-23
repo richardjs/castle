@@ -1,10 +1,11 @@
 'use strict';
 
 var SWORD_COOLDOWN = 150;
-var SWORD_DISTANCE = 15;
+var SWORD_DISTANCE = 0;//15;
 
 var Sword = Item.extend({
 	init: function(player){
+		this.name = 'Sword';
 		this._super(Item, 'init', [player]);
 		this.cooldown = 0;
 	},

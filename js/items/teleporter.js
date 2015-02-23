@@ -3,6 +3,7 @@ var TELEPORT_WARMUP = 1000;
 
 var Teleporter = Item.extend({
 	'init': function(player){
+		this.name = 'Teleportation Ring';
 		this._super(Item, 'init', [player]);
 		this.cooldown = 0;
 		this.warmup = 0;

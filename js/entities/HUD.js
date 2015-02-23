@@ -24,7 +24,7 @@ game.HUD.Container = me.Container.extend({
         this.name = "HUD";
 
         // add our child score object at the top left corner
-        this.addChild(new game.HUD.ScoreItem(5, 5));
+        this.addChild(new game.HUD.ItemHUD());
     }
 });
 
@@ -32,31 +32,26 @@ game.HUD.Container = me.Container.extend({
 /**
  * a basic HUD item to display score
  */
-game.HUD.ScoreItem = me.Renderable.extend({
+game.HUD.ItemHUD = me.Renderable.extend({
     /**
      * constructor
      */
-    init: function(x, y) {
+    init: function() {
 
         // call the parent constructor
         // (size does not matter here)
-        this._super(me.Renderable, 'init', [x, y, 10, 10]);
+        this._super(me.Renderable, 'init', [0, 0, 10, 10]);
 
-        // local copy of the global score
-        this.score = -1;
+
+		this.font = new me.Font('arial', 14, '#ccc');
     },
 
     /**
      * update function
      */
     update : function () {
-        // we don't do anything fancy here, so just
-        // return true if the score has been updated
-        if (this.score !== game.data.score) {
-            this.score = game.data.score;
-            return true;
-        }
-        return false;
+		// STUB
+		return true;
     },
 
     /**
@@ -64,6 +59,17 @@ game.HUD.ScoreItem = me.Renderable.extend({
      */
     draw : function (context) {
         // draw it baby !
+		var text = 'Items:\n';
+		game.data.items.forEach(function(item){
+			text += item.name;
+			if(item.button === 0){
+				text += ' [L]';
+			}else if(item.button === 2){
+				text += ' [R]';
+			}
+			text += '\n';
+		});
+		this.font.draw(context.getContext(), text, context.getWidth() - 150, 10);
     }
 
 });
