@@ -20,7 +20,7 @@ game.SwordSwing = me.Entity.extend({
 		this.body.addShape(new me.Rect(0, 0, settings.width, settings.height));
 		this.body.setCollisionMask(me.collision.types.ENEMY_OBJECT);
 
-		this.ttl = 100*4;
+		this.ttl = 70*4;
 		this.damage = 20;
 
 		this.player = player;

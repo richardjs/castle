@@ -59,9 +59,13 @@ game.PlayerEntity = me.Entity.extend({
 		this.renderable.addAnimation('slingshot_high_left', [37]);
 		this.renderable.addAnimation('slingshot_fire_left', [38]);
 
-		this.renderable.addAnimation('sword_down', [51, 52, 53, 54], 100);
-		this.renderable.addAnimation('sword_up', [67, 68, 69, 70], 100);
-		this.renderable.addAnimation('sword_left', [83, 84, 85, 86], 100);
+		this.renderable.addAnimation('sword_down', [51, 52, 53, 54], 70);
+		this.renderable.addAnimation('sword_up', [67, 68, 69, 70], 70);
+		this.renderable.addAnimation('sword_left', [83, 84, 85, 86], 70);
+
+		this.renderable.addAnimation('cast_down', [99, 100, 101, 102], 150);
+		this.renderable.addAnimation('cast_up', [115, 116, 117, 118], 150);
+		this.renderable.addAnimation('cast_left', [131, 132, 133, 134], 150);
 
 		this.facing = undefined;
 		this.itemAnimation = false;
