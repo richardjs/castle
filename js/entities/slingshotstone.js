@@ -6,7 +6,7 @@ game.SlingshotStoneEntity = me.Entity.extend({
 		settings.width = 5;
 		settings.collisionType = 'PROJECTILE_OBJECT';
 
-		this._super(me.Entity, 'init', [x, y, settings]);
+		this._super(me.Entity, 'init', [x - settings.width/2, y - settings.height/2, settings]);
 		this.body.addShape(new me.Rect(0, 0, settings.width, settings.height));
 		//this.body.setCollisionMask(me.collision.types.WORLD_SHAPE | me.collision.types.ENEMY_OBJECT);
 		this.body.setCollisionMask(me.collision.types.WORLD_SHAPE | me.collision.types.ENEMY_OBJECT);

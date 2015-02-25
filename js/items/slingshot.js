@@ -43,8 +43,8 @@ var Slingshot = Item.extend({
 		if(this.charge > 0){
 			me.game.world.addChild(me.pool.pull(
 				'slingshotstone',
-				this.player.pos.x,
-				this.player.pos.y,
+				this.player.weaponOrigin.x,
+				this.player.weaponOrigin.y,
 				this.player.pointerPos.x,
 				this.player.pointerPos.y,
 				this.charge

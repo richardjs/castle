@@ -165,6 +165,12 @@ game.PlayerEntity = me.Entity.extend({
 		}
 		this.angle = angle;
 
+		// update weapon origin
+		this.weaponOrigin = new me.Vector2d(10, 0);
+		this.weaponOrigin.rotate(this.angle);
+		this.weaponOrigin.x += this.pos.x + this.width/2;
+		this.weaponOrigin.y += this.pos.y;
+
 		// respond to contols
 		if(me.input.isKeyPressed('left') && !me.input.isKeyPressed('right')){
 			this.body.vel.x -= this.body.accel.x * me.timer.tick;
