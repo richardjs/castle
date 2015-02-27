@@ -208,8 +208,8 @@ game.PlayerEntity = me.Entity.extend({
 
 		// return true if we moved or if the renderable was updated
 		return (
-			rotatedThisFrame
-			|| this._super(me.Entity, 'update', [dt])
+			this._super(me.Entity, 'update', [dt])
+			|| rotatedThisFrame
 			|| this.body.vel.x !== 0
 			|| this.body.vel.y !== 0
 			|| this.itemAnimation
