@@ -8,7 +8,7 @@ game.PlayerEntity = me.Entity.extend({
 	 */
 	init: function (x, y, settings) {
 		// set the image
-		settings.image = 'character';
+		settings.image = 'sprites';
 		settings.width = 15;
 		settings.height = 12;
 		settings.spritewidth = 32

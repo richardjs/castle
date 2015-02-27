@@ -57,6 +57,9 @@ var game = {
 		// disable physics gravity
 		me.sys.gravity = 0;
 
+		me.sys.preRender = false;
+
+
 		// start the game
 		me.state.change(me.state.PLAY);
 	}
