@@ -7,8 +7,8 @@ game.CrowEntity = me.Entity.extend({
 		settings.image = 'sprites';
 		settings.spritewidth = 32;
 		settings.spriteheight = 32;
-		settings.width = 17;
-		settings.height = 20;
+		settings.width = 32;
+		settings.height = 15;
 		settings.collisiontype = 'ENEMY_OBJECT';
 
 		this._super(me.Entity, 'init', [x, y, settings]); 
