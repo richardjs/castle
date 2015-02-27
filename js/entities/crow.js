@@ -17,7 +17,7 @@ game.CrowEntity = me.Entity.extend({
 		this.angle = 0;
 		this.turndir = 0;
 
-		this.health = 20;
+		this.health = 30;
 
 		this.renderable.addAnimation('rest', [112, 113], 200);
 		this.renderable.addAnimation('fly', [96, 97, 98, 97], 100);
