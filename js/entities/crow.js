@@ -46,6 +46,12 @@ game.CrowEntity = me.Entity.extend({
 
 			this.body.vel.x = (Math.cos(this.angle) * CROW_MOVE_SPEED);
 			this.body.vel.y = (Math.sin(this.angle) * CROW_MOVE_SPEED);
+
+			if(this.body.vel.x > 0){
+				this.renderable.flipX(true);
+			}else{
+				this.renderable.flipX(false);
+			}
 		}
 
 		this.body.update(dt);
