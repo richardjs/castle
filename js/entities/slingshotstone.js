@@ -42,6 +42,9 @@ game.SlingshotStoneEntity = me.Entity.extend({
 		if(other.type === 'groundOnly'){
 			return false;
 		}
+		if(other.incorporeal){
+			return false;
+		}
 		me.game.world.removeChild(this);
 		return true;
 	}
