@@ -1,12 +1,14 @@
-var BAT_MOVE_DISTANCE = 500;
+var BAT_MOVE_DISTANCE = 250;
 var BAT_MOVE_SPEED = 4.5;
 var BAT_TURN_SPEED = Math.PI;
 
 game.BatEntity = me.Entity.extend({
 	'init': function(x, y, settings){
-		settings.image = 'bat';
-		settings.width = 20;
-		settings.height = 9;
+		settings.image = 'sprites';
+		settings.spritewidth = 32;
+		settings.spriteheight = 32;
+		settings.width = 17;
+		settings.height = 20;
 		settings.collisiontype = 'ENEMY_OBJECT';
 
 		this._super(me.Entity, 'init', [x, y, settings]); 
@@ -16,18 +18,27 @@ game.BatEntity = me.Entity.extend({
 		this.turndir = 0;
 
 		this.health = 10;
+
+		this.renderable.addAnimation('rest', [80, 81, 82, 81], 200);
+		this.renderable.addAnimation('fly', [64, 65, 66, 65], 100);
+		this.renderable.setCurrentAnimation('rest');
+		this.panic = false;
 	},
 
 	'update': function(dt){
-		if(this.distanceTo(me.game.player) < BAT_MOVE_DISTANCE){
+		if(this.distanceTo(me.game.player) < BAT_MOVE_DISTANCE || this.panic){
 			if(this.state !== 'move'){
 				this.state = 'move';
+				this.renderable.setCurrentAnimation('fly');
 				this.newDirection();
 			}
 		}else{
 			this.state = 'rest';
 			this.body.vel.x = 0;
 			this.body.vel.y = 0;
+			if(!this.renderable.isCurrentAnimation('rest')){
+				this.renderable.setCurrentAnimation('rest');
+			}
 		}
 
 		if(this.state === 'move'){
@@ -60,6 +71,7 @@ game.BatEntity = me.Entity.extend({
 				me.game.world.removeChild(this);
 			}
 			this.renderable.flicker(500);
+			this.panic = true;
 		}
 
 		if(other.body.collisionType === me.collision.types.PLAYER_OBJECT){
