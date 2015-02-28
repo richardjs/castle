@@ -46,6 +46,8 @@ game.PickupEntity = me.Entity.extend({
 			case 'boots':
 				item = new Boots();
 				break;
+			case 'map':
+				break;
 			case 'slap':
 				item = new Slap();
 				break;
@@ -56,12 +58,15 @@ game.PickupEntity = me.Entity.extend({
 				item = new Teleporter();
 				break;
 		}
-		if(item){
-			if(item.passive){
-				game.data.passiveItems.push(item);
-			}else{
-				game.data.items.push(item);
-			}
+
+		if(!item){
+			return false;
+		}
+
+		if(item.passive){
+			game.data.passiveItems.push(item);
+		}else{
+			game.data.items.push(item);
 		}
 
 		if(game.data.items.length === 2){
