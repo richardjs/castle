@@ -70,9 +70,9 @@ game.HUD.CharacterHUD = me.Renderable.extend({
 		game.data.items.forEach(function(item){
 			text += item.name;
 			if(item.button === 0){
-				text += ' [L]';
+				text += ' [LEFT]';
 			}else if(item.button === 2){
-				text += ' [R]';
+				text += ' [RIGHT]';
 			}
 			text += '\n';
 		});
@@ -84,7 +84,7 @@ game.HUD.CharacterHUD = me.Renderable.extend({
 			text += item.name + '\n';
 		});
 
-		this.font.draw(context.getContext(), text, context.getWidth() - 175, 10);
+		this.font.draw(context.getContext(), text, context.getWidth() - 225, 10);
     }
 
 });
