@@ -1,79 +1,45 @@
-<!DOCTYPE HTML>
+<!doctype html>
 <html>
 	<head>
-		<title>melonJS Template</title>
-		<link rel="stylesheet" type="text/css" media="screen" href="index.css">
-		<meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-        <link rel="apple-touch-icon" href="icons/touch-icon-iphone-60x60.png">
-        <link rel="apple-touch-icon" sizes="76x76" href="icons/touch-icon-ipad-76x76.png">
-        <link rel="apple-touch-icon" sizes="120x120" href="icons/touch-icon-iphone-retina-120x120.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="icons/touch-icon-ipad-retina-152x152.png">
+		<meta charset="utf-8">
+		<title>Cartographer of the Keep</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/style.css">
 	</head>
-	<body oncontextmenu="return false;">
-		<!-- Canvas placeholder -->
-		<div id="screen"></div>
+	<body>
+		<div class="container">
+			<p style="margin-top: 20px"><span class="lead">Ruins of a medieval
+			castle with a checkered history rest on the hill outside of
+			town.</span> Built by the illustrious duke of the shire, the
+			fortress stood as a testament to the goodwill and kindness of her
+			benevolent lord. Eventually, the manor was ruled by a man whose
+			thirst for power ultimately shattered his life and the estate.</p>
 
-		<!-- melonJS Library -->
-		<!-- build:js js/app.min.js -->
-		<script type="text/javascript" src="lib/melonJS-2.0.2.js"></script>
+			<p>Rumor states that the last duke left behind a secret map that
+			will lead the user to the remnants of his treasure horde in another
+			land. Despite evidence indicating that the remnants of the castle
+			are dangerous, you have decided to discover the map so that you can
+			obtain the fabled riches. Armed only with your trusted Explorer’s
+			Sling, excitement awaits you as you seek adventure and wonder
+			throughout the world!</p>
 
-		<!-- Plugin(s) -->
-		<script type="text/javascript" src="lib/plugins/debug/debugPanel.js"></script>
-		
-		<!-- Game Scripts -->
-		<script type="text/javascript" src="js/game.js"></script>
-		<script type="text/javascript" src="js/resources.js"></script>
+			<hr>
 
-		<script type="text/javascript" src="js/entities/bat.js"></script>
-		<script type="text/javascript" src="js/entities/blurb.js"></script>
-		<script type="text/javascript" src="js/entities/crow.js"></script>
-		<script type="text/javascript" src="js/entities/ghost.js"></script>
-		<script type="text/javascript" src="js/entities/guard.js"></script>
-		<script type="text/javascript" src="js/entities/pickup.js"></script>
-		<script type="text/javascript" src="js/entities/player.js"></script>
-		<script type="text/javascript" src="js/entities/slingshotstone.js"></script>
-		<script type="text/javascript" src="js/entities/swordswing.js"></script>
-		<script type="text/javascript" src="js/entities/HUD.js"></script>
+			<h2>Controls:</h2>
+			<ul class="list-unstyled">
+				<li><strong>WASD</strong> &mdash; move</li>
+				<li><strong>Left click</strong> &mdash; Activate left item</li>
+				<li><strong>Right click</strong> &mdash; Activate right item</li>
+				<li><strong>Q</strong> &mdash; Equip next item on left</li>
+				<li><strong>E</strong> &mdash; Equip next item on right</li>
+			</ul>
 
-		<script type="text/javascript" src="js/items/item.js"></script>
+			<h2><a href="game.html">Enter the castle</a></h2>
 
-		<script type="text/javascript" src="js/items/armor.js"></script>
-		<script type="text/javascript" src="js/items/boots.js"></script>
-		<script type="text/javascript" src="js/items/slingshot.js"></script>
-		<script type="text/javascript" src="js/items/sword.js"></script>
-		<script type="text/javascript" src="js/items/teleporter.js"></script>
+			<hr>
 
-		<script type="text/javascript" src="js/screens/title.js"></script>
-		<script type="text/javascript" src="js/screens/play.js"></script>
-		<!-- /build -->
-		<!-- Bootstrap & Mobile optimization tricks -->
-		<script type="text/javascript">
-			window.onReady(function onReady() {
-				game.onload();
-
-				// Mobile browser hacks
-				if (me.device.isMobile && !navigator.isCocoonJS) {
-					// Prevent the webview from moving on a swipe
-					window.document.addEventListener("touchmove", function (e) {
-						e.preventDefault();
-						window.scroll(0, 0);
-						return false;
-					}, false);
-
-					// Scroll away mobile GUI
-					(function () {
-						window.scrollTo(0, 1);
-						me.video.onresize(null);
-					}).defer();
-
-					me.event.subscribe(me.event.WINDOW_ONRESIZE, function (e) {
-						window.scrollTo(0, 1);
-					});
-				}
-			});
-		</script>
+			<p><a href="credits.html">Credits</a></p>
+		</div>
 	</body>
 </html>
+

@@ -1,0 +1,17 @@
+body{
+	background: #001;
+	color: #087;
+	font-size: 12pt;
+}
+
+a{
+	color: #b03;
+	text-decoration: underline;
+}
+a:hover{
+	color: #f36;
+}
+
+hr{
+	border-color: #322;
+}
