@@ -5,7 +5,7 @@ var SLAP_DISTANCE = -5;
 var Slap = Item.extend({
 	init: function(){
 		this.name = 'Slap Hand';
-		this.text = '';
+		this.text = 'The hand of past crimes is actually you.';
 
 		this._super(Item, 'init', []);
 	},

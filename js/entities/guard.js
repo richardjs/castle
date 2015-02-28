@@ -47,7 +47,7 @@ game.GuardEntity = me.Entity.extend({
 		}
 
 		this.armor = 9;
-		this.health = 20;
+		this.health = 35;
 		this.damage = 25;
 
 		this.state = 'patrol';
@@ -132,7 +132,16 @@ game.GuardEntity = me.Entity.extend({
 			this.body.setVelocity(GUARD_CHASE_VELOCITY, GUARD_CHASE_VELOCITY);
 			this.state = 'chase';
 
-			this.health -= Math.max(other.damage - this.armor, 0);
+			if(other.magic){
+				this.health -= other.damage, 0;
+			}else{
+				this.health -= Math.max(other.damage - this.armor, 0);
+			}
+
+			if(other.magic || other.damage - this.armor > 0){
+				this.renderable.flicker(500);
+			}
+
 			if(this.health <= 0){
 				me.game.world.removeChild(this);
 			}

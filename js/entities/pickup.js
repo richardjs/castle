@@ -46,6 +46,9 @@ game.PickupEntity = me.Entity.extend({
 			case 'boots':
 				item = new Boots();
 				break;
+			case 'fire':
+				item = new Fire();
+				break;
 			case 'map':
 				game.text.display('Obtained: Map\n\nCongratulations! Press Enter to continue.')
 				game.text.timer = 15*1000;

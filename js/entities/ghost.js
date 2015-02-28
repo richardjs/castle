@@ -1,14 +1,14 @@
 'use strict';
 
-var GHOST_ACTIVATION_DISTANCE = 100;
+var GHOST_ACTIVATION_DISTANCE = 250;
 
-var GHOST_MOVE_SPEED = 1.3;
+var GHOST_MOVE_SPEED = 1.75;
 
 var GHOST_FADE_DISTANCE = 250;
 var GHOST_MAX_FADE = 1;
 var GHOST_MIN_FADE = .05;
 
-var GHOST_TELEPORT_DISTANCE = 275;
+var GHOST_TELEPORT_DISTANCE = 150;
 
 game.GhostEntity = me.Entity.extend({
 	'init': function(x, y, settings){

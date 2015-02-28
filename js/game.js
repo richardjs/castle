@@ -49,6 +49,7 @@ var game = {
 		me.pool.register("bat", game.BatEntity);
 		me.pool.register("blurb", game.BlurbEntity);
 		me.pool.register("crow", game.CrowEntity);
+		me.pool.register("flame", game.FlameEntity);
 		me.pool.register("ghost", game.GhostEntity);
 		me.pool.register("guard", game.GuardEntity);
 		me.pool.register("pickup", game.PickupEntity);
