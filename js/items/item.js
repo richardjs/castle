@@ -1,8 +1,7 @@
 var Item = Object.extend({
-	'init': function(player){
+	'init': function(){
 		this.button = undefined;
 		this.equipped = false;
-		this.player = player;
 	},
 
 	'equip': function(button){

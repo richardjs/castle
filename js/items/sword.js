@@ -4,9 +4,9 @@ var SWORD_COOLDOWN = 150;
 var SWORD_DISTANCE = 0;//15;
 
 var Sword = Item.extend({
-	init: function(player){
+	init: function(){
 		this.name = 'Sword';
-		this._super(Item, 'init', [player]);
+		this._super(Item, 'init', []);
 		this.cooldown = 0;
 	},
 
@@ -18,7 +18,7 @@ var Sword = Item.extend({
 
 	hold: function(event){
 		if(this.cooldown <= 0){
-			me.game.world.addChild(me.pool.pull('swordswing', this.player));
+			me.game.world.addChild(me.pool.pull('swordswing', me.game.player));
 			this.cooldown = SWORD_COOLDOWN;
 		}
 	}

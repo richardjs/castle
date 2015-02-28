@@ -1,6 +1,12 @@
+'use strict';
+
 /**
  * Player Entity
  */
+
+var PLAYER_MAX_HEALTH = 100;
+var PLAYER_INVINCIBILITY_TIME = 750;
+
 game.PlayerEntity = me.Entity.extend({
 
 	/**
@@ -73,15 +79,11 @@ game.PlayerEntity = me.Entity.extend({
 		this.facing = undefined;
 		this.itemAnimation = false;
 
-		// STUB: give player a slingshot and teleporter
-		this.slingshot = new Slingshot(this);
-		this.slingshot.equip(0);
-		this.teleporter = new Teleporter(this);
-		this.sword = new Sword(this);
-		this.teleporter.equip(2);
-		game.data.items.push(this.slingshot);
-		game.data.items.push(this.sword);
-		game.data.items.push(this.teleporter);
+		this.health = PLAYER_MAX_HEALTH;
+		this.spawnX = this.pos.x;
+		this.spawnY = this.pos.y;
+
+		this.invincibility = 0;
 	},
 
 
@@ -101,6 +103,15 @@ game.PlayerEntity = me.Entity.extend({
 	keyDown: function(event){
 		switch(event.keyCode){
 			case 81: // q
+				if(game.data.items.length === 2){
+					var buttonA = game.data.items[0].button;
+					var buttonB = game.data.items[1].button;
+					game.data.items[0].unequip();
+					game.data.items[1].unequip();
+					game.data.items[0].equip(buttonB);
+					game.data.items[1].equip(buttonA);
+				}
+
 				var equipped;
 				var i;
 				for(i = 0; i < game.data.items.length; i++){
@@ -118,6 +129,15 @@ game.PlayerEntity = me.Entity.extend({
 				}
 				break;
 			case 69: // e
+				if(game.data.items.length === 2){
+					var buttonA = game.data.items[0].button;
+					var buttonB = game.data.items[1].button;
+					game.data.items[0].unequip();
+					game.data.items[1].unequip();
+					game.data.items[0].equip(buttonB);
+					game.data.items[1].equip(buttonA);
+				}
+
 				var equipped;
 				var i;
 				for(i = 0; i < game.data.items.length; i++){
@@ -141,10 +161,9 @@ game.PlayerEntity = me.Entity.extend({
 	 * update the entity
 	 */
 	update : function (dt) {
-		// STUB
-		this.slingshot.update(dt);
-		this.teleporter.update(dt);
-		this.sword.update(dt);
+		game.data.items.forEach(function(item){
+			item.update(dt);
+		});
 
 		// rotate the sprite to face pointer
 		// TODO: we only need to do this on sprite update
@@ -206,6 +225,10 @@ game.PlayerEntity = me.Entity.extend({
 		var rotatedThisFrame = this.rotatedThisFrame;
 		this.rotatedThisFrame = false;
 
+		if(this.invincibility > 0){
+			this.invincibility -= dt;
+		}
+
 		// return true if we moved or if the renderable was updated
 		return (
 			this._super(me.Entity, 'update', [dt])
@@ -226,7 +249,25 @@ game.PlayerEntity = me.Entity.extend({
 			return false;
 		}
 		if(other.body.collisionType === me.collision.types.ENEMY_OBJECT){
-			this.renderable.flicker(500);
+			if(this.invincibility > 0){
+				return false;
+			}
+
+			if(other.damage){
+				this.health -= other.damage;
+				if(this.health <= 0){
+					this.pos.x = this.spawnX;
+					this.pos.y = this.spawnY;
+					this.health = PLAYER_MAX_HEALTH;
+
+					this.renderable.flicker(3000);
+					me.state.change(me.state.PLAY);
+				}
+			}
+
+			this.renderable.flicker(PLAYER_INVINCIBILITY_TIME);
+			this.invincibility = PLAYER_INVINCIBILITY_TIME;
+
 			return false;
 		}
 		return true;

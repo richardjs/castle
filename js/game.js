@@ -4,7 +4,8 @@ var game = {
 
 	// an object where to store game information
 	data : {
-		items: []
+		items: [],
+		opened: {}
 	},
 
 
@@ -65,5 +66,8 @@ var game = {
 
 		// start the game
 		me.state.change(me.state.PLAY);
+
+		game.data.items.push(new Slingshot());
+		game.data.items[0].equip(0);
 	}
 };

@@ -24,7 +24,7 @@
   <object id="365" name="bat" x="1070" y="2394"/>
   <object id="367" name="ghost" x="2656" y="352"/>
   <object id="369" name="guard" x="1952" y="1920" width="160" height="32"/>
-  <object id="375" name="pickup" x="2016" y="1760" width="32" height="32"/>
+  <object id="375" name="pickup" type="sword" x="2016" y="1760" width="32" height="32"/>
  </objectgroup>
  <layer name="doors" width="92" height="160">
   <data encoding="base64">

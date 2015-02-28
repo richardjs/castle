@@ -48,6 +48,8 @@ game.GuardEntity = me.Entity.extend({
 
 		this.armor = 9;
 		this.health = 20;
+		this.damage = 25;
+
 		this.state = 'patrol';
 
 		this.renderable.addAnimation('stand_down', [144]);
@@ -116,7 +118,6 @@ game.GuardEntity = me.Entity.extend({
 		}else{
 			if(!this.renderable.isCurrentAnimation('walk_' + this.facing)){
 				this.renderable.setCurrentAnimation('walk_' + this.facing);
-				console.log('walk_'+this.facing);
 			}
 		}
 
@@ -139,6 +140,7 @@ game.GuardEntity = me.Entity.extend({
 			return false;
 		}
 
-		return other.body.collisionType === me.collision.types.WORLD_SHAPE;
+		return other.body.collisionType === me.collision.types.WORLD_SHAPE ||
+			other.body.collisionType === me.collision.types.COLLECTABLE_OBJECT;
 	}
 });

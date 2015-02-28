@@ -37,11 +37,9 @@ game.HUD.ItemHUD = me.Renderable.extend({
      * constructor
      */
     init: function() {
-
         // call the parent constructor
         // (size does not matter here)
         this._super(me.Renderable, 'init', [0, 0, 10, 10]);
-
 
 		this.font = new me.Font('arial', 14, '#ccc');
     },
@@ -59,7 +57,12 @@ game.HUD.ItemHUD = me.Renderable.extend({
      */
     draw : function (context) {
         // draw it baby !
-		var text = 'Items:\n';
+		var text = ''
+
+		text += 'Health: ' + me.game.player.health;
+		text += '\n\n';
+
+		text += 'Items:\n';
 		game.data.items.forEach(function(item){
 			text += item.name;
 			if(item.button === 0){

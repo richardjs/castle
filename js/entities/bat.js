@@ -18,6 +18,7 @@ game.BatEntity = me.Entity.extend({
 		this.turndir = 0;
 
 		this.health = 10;
+		this.damage = 10;
 
 		this.renderable.addAnimation('rest', [80, 81, 82, 81], 200);
 		this.renderable.addAnimation('fly', [64, 65, 66, 65], 100);
