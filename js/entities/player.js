@@ -249,7 +249,8 @@ game.PlayerEntity = me.Entity.extend({
 	 */
 	onCollision : function (response, other) {
 		// Make all other objects solid
-		if(other.body.collisitionType === me.collision.types.PROJECTILE_OBJECT){
+		if(other.body.collisionType === me.collision.types.PROJECTILE_OBJECT
+				|| other.body.collisionType === me.collision.types.ACTION_OBJECT){
 			return false;
 		}
 		if(other.body.collisionType === me.collision.types.ENEMY_OBJECT){
@@ -276,6 +277,10 @@ game.PlayerEntity = me.Entity.extend({
 			this.renderable.flicker(PLAYER_INVINCIBILITY_TIME);
 			this.invincibility = PLAYER_INVINCIBILITY_TIME;
 
+			return false;
+		}
+
+		if(other.blurb){
 			return false;
 		}
 		return true;

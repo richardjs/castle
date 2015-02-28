@@ -47,6 +47,7 @@ var game = {
 
 		// add our player entity in the entity pool
 		me.pool.register("bat", game.BatEntity);
+		me.pool.register("blurb", game.BlurbEntity);
 		me.pool.register("crow", game.CrowEntity);
 		me.pool.register("ghost", game.GhostEntity);
 		me.pool.register("guard", game.GuardEntity);

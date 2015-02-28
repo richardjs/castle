@@ -25,8 +25,10 @@ game.HUD.Container = me.Container.extend({
 
         // add our child score object at the top left corner
         this.addChild(new game.HUD.CharacterHUD());
-		game.text = new game.HUD.TextHUD()
+		game.text = new game.HUD.ItemTextHUD()
         this.addChild(game.text);
+		game.blurb = new game.HUD.BlurbHUD()
+        this.addChild(game.blurb);
     }
 });
 
@@ -88,7 +90,7 @@ game.HUD.CharacterHUD = me.Renderable.extend({
 });
 
 var MESSAGE_TIME = 10000;
-game.HUD.TextHUD = me.Renderable.extend({
+game.HUD.ItemTextHUD = me.Renderable.extend({
 	init: function(){
 		this._super(me.Renderable, 'init', [0, 0, 10, 10]);
 		this.font = new me.Font('arial', 24, '#ccc');
@@ -115,6 +117,37 @@ game.HUD.TextHUD = me.Renderable.extend({
 	draw: function(context){
 		if(this.text){
 			this.font.draw(context.getContext(), this.text, 25, 25);
+		}
+	}
+});
+
+game.HUD.BlurbHUD = me.Renderable.extend({
+	init: function(){
+		this._super(me.Renderable, 'init', [0, 0, 10, 10]);
+		this.font = new me.Font('arial', 16, '#ccc');
+		this.text = '';
+		this.timer = 0;
+	}, 
+
+	display: function(text){
+		this.text = text;
+		this.timer = 500;
+	},
+
+	update: function(dt){
+		if(this.timer > 0){
+			this.timer -= dt;
+		}
+		if(this.timer <= 0){
+			this.text = '';
+		}
+
+		return true;
+	},
+
+	draw: function(context){
+		if(this.text){
+			this.font.draw(context.getContext(), this.text, 25, 600);
 		}
 	}
 });
