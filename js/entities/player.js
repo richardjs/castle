@@ -6,6 +6,8 @@
 
 var PLAYER_MAX_HEALTH = 100;
 var PLAYER_INVINCIBILITY_TIME = 750;
+var HEAL_DELAY = 100;
+var HEAL_LAG = 5000;
 
 game.PlayerEntity = me.Entity.extend({
 
@@ -88,6 +90,7 @@ game.PlayerEntity = me.Entity.extend({
 		this.spawnY = this.pos.y;
 
 		this.invincibility = 0;
+		this.healCooldown = 0;
 	},
 
 
@@ -237,6 +240,21 @@ game.PlayerEntity = me.Entity.extend({
 			this.invincibility -= dt;
 		}
 
+		if(this.healCooldown > 0){
+			this.healCooldown -= dt;
+		}else{
+			if(this.healTimer > 0){
+				this.healTimer -= dt;
+			}else{
+				this.health++;
+				this.healTimer = HEAL_DELAY;
+
+				if(this.health > PLAYER_MAX_HEALTH){
+					this.health = PLAYER_MAX_HEALTH;
+				}
+			}
+		}
+
 		// return true if we moved or if the renderable was updated
 		return (
 			this._super(me.Entity, 'update', [dt])
@@ -267,6 +285,7 @@ game.PlayerEntity = me.Entity.extend({
 					this.health -= Math.ceil(other.damage/2);
 				}else{
 					this.health -= other.damage;
+					this.healCooldown = HEAL_LAG;
 				}
 				if(this.health <= 0){
 					this.pos.x = this.spawnX;
