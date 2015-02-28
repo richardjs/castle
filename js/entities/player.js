@@ -76,7 +76,7 @@ game.PlayerEntity = me.Entity.extend({
 		this.renderable.addAnimation('cast_up', [115, 116, 117, 118], 150);
 		this.renderable.addAnimation('cast_left', [131, 132, 133, 134], 150);
 
-		this.facing = undefined;
+		this.facing = 'down';
 		this.itemAnimation = false;
 
 		this.health = PLAYER_MAX_HEALTH;
