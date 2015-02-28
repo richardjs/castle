@@ -41,6 +41,9 @@ game.PickupEntity = me.Entity.extend({
 			case 'boots':
 				item = new Boots();
 				break;
+			case 'slap':
+				item = new Slap();
+				break;
 			case 'sword':
 				item = new Sword();
 				break;

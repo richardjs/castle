@@ -76,6 +76,10 @@ game.PlayerEntity = me.Entity.extend({
 		this.renderable.addAnimation('cast_up', [115, 116, 117, 118], 150);
 		this.renderable.addAnimation('cast_left', [131, 132, 133, 134], 150);
 
+		this.renderable.addAnimation('slap_down', [99, 100, 101, 102, 102, 102], 25);
+		this.renderable.addAnimation('slap_up', [115, 116, 117, 118, 118, 118], 25);
+		this.renderable.addAnimation('slap_left', [131, 132, 133, 134, 134, 134], 25);
+
 		this.facing = 'down';
 		this.itemAnimation = false;
 
