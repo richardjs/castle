@@ -13,8 +13,13 @@ game.PickupEntity = me.Entity.extend({
 
 		this.anchorPoint.set(.5, 1);
 
-		this.renderable.addAnimation('closed', [67]);
-		this.renderable.addAnimation('open', [68]);
+		if(this.type !== 'slap'){
+			this.renderable.addAnimation('closed', [67]);
+			this.renderable.addAnimation('open', [68]);
+		}else{
+			this.renderable.addAnimation('closed', [255]);
+			this.renderable.addAnimation('open', [255]);
+		}
 
 		this.opened = game.data[this.type];
 		if(!this.opened){
