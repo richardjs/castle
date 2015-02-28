@@ -47,6 +47,13 @@ game.PickupEntity = me.Entity.extend({
 				item = new Boots();
 				break;
 			case 'map':
+				game.text.display('Obtained: Map\n\nCongratulations! Press Enter to continue.')
+				game.text.timer = 15*1000;
+				document.body.addEventListener('keydown', function(event){
+					if(event.keyCode === 13){
+						window.location = 'win.html';
+					}
+				});
 				break;
 			case 'slap':
 				item = new Slap();

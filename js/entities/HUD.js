@@ -124,7 +124,7 @@ game.HUD.ItemTextHUD = me.Renderable.extend({
 game.HUD.BlurbHUD = me.Renderable.extend({
 	init: function(){
 		this._super(me.Renderable, 'init', [0, 0, 10, 10]);
-		this.font = new me.Font('arial', 16, '#ccc');
+		this.font = new me.Font('arial', 18, '#ccc');
 		this.text = '';
 		this.timer = 0;
 	}, 

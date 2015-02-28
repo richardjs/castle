@@ -5,13 +5,16 @@ body{
 }
 
 a{
-	color: #b03;
+	color: #b05;
 	text-decoration: underline;
 }
 a:hover{
-	color: #f36;
+	color: #d25;
+}
+a:visited{
+	color: #b05;
 }
 
 hr{
-	border-color: #322;
+	border-color: #232;
 }
