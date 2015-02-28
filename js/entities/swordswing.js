@@ -2,12 +2,15 @@ game.SwordSwing = me.Entity.extend({
 	init: function(player){
 		var settings = {};
 		//settings.image = 'slingshotstone';
-		settings.width = 15;
-		settings.height = 15;
+		settings.width = 20;
+		settings.height = 20;
 		settings.collisionType = 'PROJECTILE_OBJECT';
 
 		var tipX = player.weaponOrigin.x + (Math.cos(player.angle)*SWORD_DISTANCE) - settings.width/2;
 		var tipY = player.weaponOrigin.y + (Math.sin(player.angle)*SWORD_DISTANCE) - settings.height/2;
+
+		this.diffX = tipX - player.pos.x;
+		this.diffY = tipY - player.pos.y;
 
 		this._super(me.Entity, 'init', [tipX, tipY, settings]);
 
@@ -25,6 +28,8 @@ game.SwordSwing = me.Entity.extend({
 	},
 
 	update: function(dt){
+		this.pos.x = this.player.pos.x + this.diffX;
+		this.pos.y = this.player.pos.y + this.diffY;
 		this.body.update(dt);
 
 		this.ttl -= dt;
