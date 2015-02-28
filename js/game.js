@@ -5,7 +5,10 @@ var game = {
 	// an object where to store game information
 	data : {
 		items: [],
-		opened: {}
+		passiveItems: [],
+		opened: {},
+		armor: false,
+		speed: false
 	},
 
 

@@ -40,11 +40,17 @@ game.PickupEntity = me.Entity.extend({
 				break;
 			case 'teleporter':
 				item = new Teleporter();
-				game.data.items.push(new Teleporter(me.game.player));
+				break;
+			case 'armor':
+				item = new Armor();
 				break;
 		}
 		if(item){
-			game.data.items.push(item);
+			if(item.passive){
+				game.data.passiveItems.push(item);
+			}else{
+				game.data.items.push(item);
+			}
 		}
 
 		if(game.data.items.length === 2){
