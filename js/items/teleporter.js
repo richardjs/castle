@@ -3,7 +3,8 @@ var TELEPORT_WARMUP = 1200;
 
 var Teleporter = Item.extend({
 	'init': function(){
-		this.name = 'Teleportation Ring';
+		this.name = 'Mirror of Escape';
+		this.text = 'Even pits pose no problems when fleeing from your enemies.';
 		this._super(Item, 'init', []);
 		this.cooldown = 0;
 		this.warmup = 0;

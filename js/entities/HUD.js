@@ -25,6 +25,8 @@ game.HUD.Container = me.Container.extend({
 
         // add our child score object at the top left corner
         this.addChild(new game.HUD.ItemHUD());
+		game.text = new game.HUD.TextHUD()
+        this.addChild(game.text);
     }
 });
 
@@ -41,7 +43,7 @@ game.HUD.ItemHUD = me.Renderable.extend({
         // (size does not matter here)
         this._super(me.Renderable, 'init', [0, 0, 10, 10]);
 
-		this.font = new me.Font('arial', 14, '#ccc');
+		this.font = new me.Font('arial', 16, '#ccc');
     },
 
     /**
@@ -72,7 +74,39 @@ game.HUD.ItemHUD = me.Renderable.extend({
 			}
 			text += '\n';
 		});
-		this.font.draw(context.getContext(), text, context.getWidth() - 150, 10);
+		this.font.draw(context.getContext(), text, context.getWidth() - 175, 10);
     }
 
+});
+
+var MESSAGE_TIME = 10000;
+game.HUD.TextHUD = me.Renderable.extend({
+	init: function(){
+		this._super(me.Renderable, 'init', [0, 0, 10, 10]);
+		this.font = new me.Font('arial', 24, '#ccc');
+		this.text = '';
+		this.timer = 0;
+	}, 
+
+	display: function(text){
+		this.text = text;
+		this.timer = MESSAGE_TIME;
+	},
+
+	update: function(dt){
+		if(this.timer > 0){
+			this.timer -= dt;
+		}
+		if(this.timer <= 0){
+			this.text = '';
+		}
+
+		return true;
+	},
+
+	draw: function(context){
+		if(this.text){
+			this.font.draw(context.getContext(), this.text, 25, 25);
+		}
+	}
 });

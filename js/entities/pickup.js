@@ -33,18 +33,36 @@ game.PickupEntity = me.Entity.extend({
 		this.opened = true;
 		game.data[this.type] = true;
 
+		var item;
 		switch(this.type){
 			case 'sword':
-				game.data.items.push(new Sword(me.game.player));
+				item = new Sword();
 				break;
 			case 'teleporter':
+				item = new Teleporter();
 				game.data.items.push(new Teleporter(me.game.player));
 				break;
+		}
+		if(item){
+			game.data.items.push(item);
 		}
 
 		if(game.data.items.length === 2){
 			game.data.items[1].equip(2);
 		}
+
+		var text = ''
+		var words = item.text.split(' ')
+		for(var i = 0; i < words.length; i++){
+			text += words[i];
+			if((i+1) % 10 === 0){
+				text += '\n';
+			}else{
+				text += ' ';
+			}
+		}
+
+		game.text.display('Obtained: ' + item.name + '\n\n' + text);
 
 		return false;
 	}

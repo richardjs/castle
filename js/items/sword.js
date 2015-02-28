@@ -5,7 +5,9 @@ var SWORD_DISTANCE = 0;//15;
 
 var Sword = Item.extend({
 	init: function(){
-		this.name = 'Sword';
+		this.name = 'Brand of the Rogue';
+		this.text = 'Stolen from a noble knight, this saber was once wielded by an outlaw who infiltrated a guarded keep.';
+
 		this._super(Item, 'init', []);
 		this.cooldown = 0;
 	},

@@ -5,7 +5,8 @@ var SLINGSHOT_COOLDOWN = 500;
 
 var Slingshot = Item.extend({
 	'init': function(){
-		this.name = 'Slingshot';
+		this.name = 'Explorer\'s Sling';
+		this.text = '';
 		this._super(Item, 'init', []);
 		this.charge = 0;
 		this.charging = false;
