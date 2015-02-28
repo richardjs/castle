@@ -165,6 +165,10 @@ game.PlayerEntity = me.Entity.extend({
 			item.update(dt);
 		});
 
+		if(game.data.speed){
+			this.body.setVelocity(2.25, 2.25);
+		}
+
 		// rotate the sprite to face pointer
 		// TODO: we only need to do this on sprite update
 		var angle = Math.atan2(
