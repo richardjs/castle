@@ -22,6 +22,7 @@ game.GhostEntity = me.Entity.extend({
 		this._super(me.Entity, 'init', [x, y, settings]); 
 
 		this.health = 20;
+		this.damage = 40;
 		this.incorporeal = true;
 
 		this.renderable.addAnimation('float', [128, 129], 500);
