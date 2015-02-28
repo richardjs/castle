@@ -254,7 +254,11 @@ game.PlayerEntity = me.Entity.extend({
 			}
 
 			if(other.damage){
-				this.health -= other.damage;
+				if(game.data.armor){
+					this.health -= Math.ceil(other.damage/2);
+				}else{
+					this.health -= other.damage;
+				}
 				if(this.health <= 0){
 					this.pos.x = this.spawnX;
 					this.pos.y = this.spawnY;

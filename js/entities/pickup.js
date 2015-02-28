@@ -35,14 +35,14 @@ game.PickupEntity = me.Entity.extend({
 
 		var item;
 		switch(this.type){
+			case 'armor':
+				item = new Armor();
+				break;
 			case 'sword':
 				item = new Sword();
 				break;
 			case 'teleporter':
 				item = new Teleporter();
-				break;
-			case 'armor':
-				item = new Armor();
 				break;
 		}
 		if(item){

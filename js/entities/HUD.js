@@ -74,6 +74,14 @@ game.HUD.CharacterHUD = me.Renderable.extend({
 			}
 			text += '\n';
 		});
+
+		if(game.data.passiveItems.length){
+			text += '\nPassive items:\n';
+		}
+		game.data.passiveItems.forEach(function(item){
+			text += item.name + '\n';
+		});
+
 		this.font.draw(context.getContext(), text, context.getWidth() - 175, 10);
     }
 
