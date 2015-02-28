@@ -1,5 +1,7 @@
 'use strict';
 
+var GHOST_ACTIVATION_DISTANCE = 100;
+
 var GHOST_MOVE_SPEED = 1.3;
 
 var GHOST_FADE_DISTANCE = 250;
@@ -24,8 +26,11 @@ game.GhostEntity = me.Entity.extend({
 
 		this.renderable.addAnimation('float', [128, 129], 500);
 		this.renderable.setCurrentAnimation('float');
+		this.renderable.setOpacity(GHOST_MIN_FADE);
 
 		this.angle = Math.atan2(me.game.player.pos.y - this.pos.y, me.game.player.pos.x - this.pos.x)
+
+		this.state = 'idle';
 	},
 
 	'update': function(dt){
@@ -33,6 +38,15 @@ game.GhostEntity = me.Entity.extend({
 		me.collision.check(this);
 
 		var playerDistance = this.distanceTo(me.game.player);
+
+		if(this.state == 'idle'){
+			if(playerDistance < GHOST_ACTIVATION_DISTANCE){
+				this.state = 'active';
+			}else{
+				return false;
+			}
+		}
+
 		if(playerDistance < GHOST_FADE_DISTANCE){
 			var fadeFactor = playerDistance / GHOST_FADE_DISTANCE;
 			var fadeSpan = GHOST_MAX_FADE - GHOST_MIN_FADE;
