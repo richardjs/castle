@@ -35,7 +35,9 @@ var TeleportTester = me.Entity.extend({
 
 	onCollision: function(response, other){
 		if(other.body.collisionType === me.collision.types.WORLD_SHAPE){
-			this.failed = true;
+			if(other.type !== 'groundOnly'){
+				this.failed = true;
+			}
 		}
 	}
 });
