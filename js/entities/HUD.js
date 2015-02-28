@@ -24,7 +24,7 @@ game.HUD.Container = me.Container.extend({
         this.name = "HUD";
 
         // add our child score object at the top left corner
-        this.addChild(new game.HUD.ItemHUD());
+        this.addChild(new game.HUD.CharacterHUD());
 		game.text = new game.HUD.TextHUD()
         this.addChild(game.text);
     }
@@ -34,7 +34,7 @@ game.HUD.Container = me.Container.extend({
 /**
  * a basic HUD item to display score
  */
-game.HUD.ItemHUD = me.Renderable.extend({
+game.HUD.CharacterHUD = me.Renderable.extend({
     /**
      * constructor
      */
