@@ -141,6 +141,7 @@ game.PlayerEntity = me.Entity.extend({
 					if(!item.equipped){
 						game.data.items[equipped].unequip();
 						item.equip(0);
+						break;
 					}
 				}
 				break;
@@ -168,6 +169,7 @@ game.PlayerEntity = me.Entity.extend({
 					if(!item.equipped){
 						game.data.items[equipped].unequip();
 						item.equip(2);
+						break;
 					}
 				}
 				break;
