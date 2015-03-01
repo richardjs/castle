@@ -531,7 +531,7 @@
   <object id="565" x="33" y="5116" width="3000" height="3"/>
   <object id="567" x="2" y="4923" width="4" height="130"/>
   <object id="570" x="2" y="2531" width="3" height="2270"/>
-  <object id="573" x="3035" y="3460" width="4" height="1647"/>
+  <object id="573" x="3035" y="3460" width="3.05464" height="1658.34"/>
   <object id="606" type="groundOnly" x="2698.45" y="3776.39" width="73.5125" height="32" rotation="-360"/>
   <object id="613" type="groundOnly" x="1568.05" y="999.563" width="128.945" height="26.3279"/>
   <object id="616" type="groundOnly" x="1567.05" y="1063.56" width="128" height="23.4918"/>
