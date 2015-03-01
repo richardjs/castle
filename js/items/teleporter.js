@@ -21,8 +21,20 @@ var TeleportTester = me.Entity.extend({
 		var dx = Math.cos(angle) * 1;
 		var dy = Math.sin(angle) * 1;
 		
+		this.pos.x = x2;
+		this.pos.y = y2;
+		this.body.update(1);
+		me.collision.check(this);
+		if(this.hit){
+			this.failed = true;
+			return;
+		}
+
 		this.body.vel.x = dx;
 		this.body.vel.y = dy;
+		this.pos.x = x1;
+		this.pos.y = y1;
+		this.body.update(1);
 
 		for(var i = 0; i < distance; i++){
 			this.body.update(1);
@@ -38,6 +50,7 @@ var TeleportTester = me.Entity.extend({
 			if(other.type !== 'groundOnly'){
 				this.failed = true;
 			}
+			this.hit = true;
 		}
 	}
 });
