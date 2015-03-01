@@ -17,7 +17,7 @@ game.CrowEntity = me.Entity.extend({
 		this.angle = 0;
 		this.turndir = 0;
 
-		this.health = 15;
+		this.health = 21;
 		this.damage = 15;
 
 		this.renderable.addAnimation('rest', [112, 113], 200);
@@ -74,6 +74,7 @@ game.CrowEntity = me.Entity.extend({
 
 		if(other.damage){
 			this.health -= other.damage;
+
 			if(this.health <= 0){
 				me.game.world.removeChild(this);
 			}

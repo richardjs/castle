@@ -8,7 +8,8 @@ var game = {
 		passiveItems: [],
 		opened: {},
 		armor: false,
-		speed: false
+		speed: false,
+		keydownBound: false
 	},
 
 

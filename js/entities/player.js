@@ -44,7 +44,10 @@ game.PlayerEntity = me.Entity.extend({
 		this.pointerPos = {x: 0, y: 0};
 
 		// Listen for keydown events for item switching
-		document.body.addEventListener('keydown', this.keyDown.bind(this));
+		if(!game.data.keydownBound){
+			document.body.addEventListener('keydown', this.keyDown.bind(this));
+			game.data.keydownBound = true;
+		}
 
 		// used to properly indicate the sprite has updated in this.update
 		this.rotatedThisFrame = false;
@@ -117,6 +120,7 @@ game.PlayerEntity = me.Entity.extend({
 					game.data.items[1].unequip();
 					game.data.items[0].equip(buttonB);
 					game.data.items[1].equip(buttonA);
+					break;
 				}
 
 				var equipped;
@@ -143,6 +147,7 @@ game.PlayerEntity = me.Entity.extend({
 					game.data.items[1].unequip();
 					game.data.items[0].equip(buttonB);
 					game.data.items[1].equip(buttonA);
+					break;
 				}
 
 				var equipped;
