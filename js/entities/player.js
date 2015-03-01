@@ -42,6 +42,7 @@ game.PlayerEntity = me.Entity.extend({
 		// Keep track of pointer position
 		me.input.registerPointerEvent('pointermove', me.game.viewport, this.pointerMove.bind(this));
 		this.pointerPos = {x: 0, y: 0};
+		this.pointerDiff = {x: 0, y: 0};
 
 		// Listen for keydown events for item switching
 		if(!game.data.keydownBound){
@@ -106,6 +107,10 @@ game.PlayerEntity = me.Entity.extend({
 		this.pointerPos = {
 			x: eventType.gameX,
 			y: eventType.gameY
+		};
+		this.pointerDiff = {
+			x: this.pointerPos.x - this.pos.x,
+			y: this.pointerPos.y - this.pos.y
 		};
 		this.rotatedThisFrame = true;
 	},
@@ -234,6 +239,9 @@ game.PlayerEntity = me.Entity.extend({
 
 		// apply physics to the body (this moves the entity)
 		this.body.update(dt);
+
+		this.pointerPos.x = this.pos.x + this.pointerDiff.x;
+		this.pointerPos.y = this.pos.y + this.pointerDiff.y;
 
 		// handle collisions against other shapes
 		me.collision.check(this);
